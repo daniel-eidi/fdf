@@ -13,6 +13,7 @@ int	get_height(char *file_name)
 		free(line);
 	}
 	close(fd);
+	free(line);
 	return(height);
 }
 
@@ -26,9 +27,13 @@ int	get_width(char *file_name)
 	line = get_next_line(fd);
 	width = ft_countword(line, ' ');
 	free(line);
+	while ((line = get_next_line(fd)))
+		free(line);	
 	close(fd);
+	free(line);
 	return(width);
 }
+
 void put_line_matrix(char *line, int *z_line)
 {
 	char **value;
@@ -51,19 +56,21 @@ void convert_file_matrix(char * file_name, fdf *data)
 	char * line;
 	int i;
 
-	data->height = get_height(file_name);
-	data->width = get_width(file_name);
+	//data->height = get_height(file_name);
+	//data->width = get_width(file_name);
 
 	data ->z_matrix = (int **)malloc(sizeof(int*) * (data->height + 1));
 	i=0;
-	while (i <= data->height)
+	while (i < data->height)
 		data->z_matrix[i++] = (int *)malloc(sizeof(int*) * (data-> width + 1));
 	fd = open(file_name, O_RDONLY, 0);
 	i = 0;
-	while (i < data->height)
+	while (1)
 	{
 		line = get_next_line(fd);
-		printf("Inserindo linha %d na matriz : %s", i, line);
+		if (line == NULL)
+			break ;
+		//printf("Inserindo linha %d na matriz : %s", i, line);
 		put_line_matrix (line, data->z_matrix[i]);
 		free(line);
 		i++;

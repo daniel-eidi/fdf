@@ -33,6 +33,8 @@ typedef struct
 	int **z_matrix;
 	int color;
 	int zoom;
+	int sx;
+	int sy;
 
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -44,5 +46,7 @@ int	get_height(char *file_name);
 int	get_width(char *file_name);
 void bresenham(float x, float y, float x1, float y1, fdf *data);
 void draw (fdf *data);
+int close_all();
+fdf *data_init(fdf *data);
 
 #endif

@@ -10,6 +10,8 @@ SRCDIR 		= ./src/
 SRC 		= $(SRCDIR)main.c \
 			$(SRCDIR)convert_file.c \
 			$(SRCDIR)draw.c \
+			$(SRCDIR)close.c \
+			$(SRCDIR)init.c \
 
 
 OBJ= $(notdir $(SRC:.c=.o))
