@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 10:17:53 by daeidi-h          #+#    #+#             */
-/*   Updated: 2022/02/28 22:21:01 by coder            ###   ########.fr       */
+/*   Updated: 2022/03/23 19:17:23 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+int					ft_atoi_base(char *str, char *base);
 
 /*new functions*/
-int	ft_countword(char const *s, char c);
+int					ft_countword(char const *s, char c);
 
 char				*get_next_line(int fd);
 

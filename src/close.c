@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   close.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daeidi-h <daeidi-h@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/24 18:39:10 by daeidi-h          #+#    #+#             */
+/*   Updated: 2022/03/24 18:39:12 by daeidi-h         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fdf.h"
 static void free_matrix(fdf *data)
 {
@@ -5,10 +17,12 @@ static void free_matrix(fdf *data)
 	j=0;
 	while(j < data->height)
 	{
-		free(data->z_matrix[j]);			
+		free(data->z_matrix[j]);
+		free(data->color_matrix[j]);			
 		j++;
 	}
 	free(data->z_matrix);
+	free(data->color_matrix);
 }
 
 int close_all(fdf *data)

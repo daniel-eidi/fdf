@@ -12,6 +12,9 @@ SRC 		= $(SRCDIR)main.c \
 			$(SRCDIR)draw.c \
 			$(SRCDIR)close.c \
 			$(SRCDIR)init.c \
+			$(SRCDIR)map_utils.c \
+			$(SRCDIR)utils.c \
+			$(SRCDIR)key_hook.c \
 
 
 OBJ= $(notdir $(SRC:.c=.o))
