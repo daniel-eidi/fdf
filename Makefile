@@ -47,7 +47,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
 	printf "\n$(CY)Generating FdF executable...$(RC)\n"
-	$(CC) $(CF) -o $(NAME) $(OBJ) -L $(MLX_PATH) -L $(LFT_PATH) -lft $(MLX_CF)
+	$(CC) $(CF) -o $(NAME) $(OBJ) -L $(LFT_PATH) -lft $(MLX_CF)
 	mkdir objs
 	mv $(OBJ) objs/
 	printf "$(GR)Done!$(RC)\n\n"
@@ -56,11 +56,6 @@ $(OBJ): $(SRC)
 	printf "\n$(CY)Compiling source files...$(RC)\n"
 	$(CC) $(CF) -g -c -I ./includes/ $(SRC)
 	printf "$(GR)Objects ready!$(RC)\n\n"
-
-$(MLX):
-	printf "\n$(CY)Generating MiniLibX...$(RC)\n"
-	make -C $(MLX_PATH)
-	printf "$(GR)MiniLibX created!$(RC)\n\n"
 
 $(LIBFT):
 	printf "\n$(GR)Generating Libft...$(RC)\n"
@@ -91,7 +86,6 @@ fclean: clean
 	@printf "\n$(YE)Cleaning all additional objects and libraries...$(RC)\n"
 	$(RM) -rf $(NAME) $(BONUS_OBJ) objs/
 	@make fclean -C $(LFT_PATH)
-	@make clean -C $(MLX_PATH)
 	@printf "$(GR)All libraries removed!$(RC)\n\n"
 	make cleanleaks
 
