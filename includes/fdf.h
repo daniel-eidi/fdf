@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: daeidi-h <daeidi-h@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 22:32:00 by daeidi-h          #+#    #+#             */
+/*   Updated: 2022/04/02 17:45:37 by daeidi-h         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -11,7 +23,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-#include <stdio.h>
+# include <stdio.h>
 
 /*
 ** Allowed libraries: math and minilibx, witch is appended in the project's 
@@ -22,24 +34,34 @@
 
 /*
 ** My own libft library, completed with previously implemented functions such as
-** get_next_line and ft_printf. 
+** get_next_line
 */
 # include "../libft/libft.h"
 
 /*
 ** Other fdf libraries
 */
-typedef struct
+typedef struct s_image
 {
-	int width;
-	int height;
-	int **z_matrix;
-	int **color_matrix;
-	int color;
-	int zoom;
-	int sx;
-	int sy;
-	int max_z;
+	void	*image;
+	int		pixel_bits;
+	int		line_bytes;
+	int		endian;
+	char	*buffer;
+}	t_image;
+
+typedef struct s_fdf
+{
+	int		width;
+	int		height;
+	int		**z_matrix;
+	int		**color_matrix;
+	int		color;
+	float	zoom;
+	int		sx;
+	int		sy;
+	int		min_z;
+	float	zscale;
 	float	x;
 	float	x1;
 	float	y;
@@ -47,20 +69,27 @@ typedef struct
 
 	void	*mlx_ptr;
 	void	*win_ptr;
-}	fdf;
+	t_image	*image;
+}	t_fdf;
 
-void	convert_file_matrix(char * file_name, fdf *data);
-int	get_height(char *file_name);
-int	get_width(char *file_name);
-void bresenham(fdf *data);
-void draw (fdf *data);
-int close_all();
-void data_init(fdf *data, char * file_name);
-void max_z(fdf *data);
-float	zoom_to_fit(fdf *data);
-int mod(float x);
-int max(float x, float y);
-int min(float x, float y);
-int	key_hook(int key, fdf *data);
+void	convert_file_matrix(char *file_name, t_fdf *data);
+int		get_height(char *file_name);
+int		get_width(char *file_name);
+void	bresenham(t_fdf *data);
+void	draw(t_fdf *data);
+int		close_all(t_fdf *data);
+t_fdf	*data_init(char *file_name);
+void	neg_z(t_fdf *data);
+float	zoom_to_fit(t_fdf *data);
+int		mod(float x);
+int		max(float x, float y);
+int		min(float x, float y);
+int		key_hook(int key, t_fdf *data);
+void	pixel_to_image(t_image *image, float x, float y, int color);
+t_image	*image_init(void *mlx);
+void	clear_image(t_image *image);
+void	init_matrix(t_fdf *data);
+void	shift(t_fdf *data);
+void	print_instructions(t_fdf *data);
 
 #endif

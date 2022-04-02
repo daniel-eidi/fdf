@@ -2,6 +2,8 @@ NAME 		= fdf
 MLX 		= libmlx_Linux.a
 LIBFT 		= libft.a
 
+
+PRINTF_PATH = ./ft_printf/
 LFT_PATH 	= ./libft/
 MLX_PATH 	= ./mlx_linux/
 INCLUDES 	= ./includes
@@ -15,6 +17,8 @@ SRC 		= $(SRCDIR)main.c \
 			$(SRCDIR)map_utils.c \
 			$(SRCDIR)utils.c \
 			$(SRCDIR)key_hook.c \
+			$(SRCDIR)mlx_image.c \
+			$(SRCDIR)instructions.c \
 
 
 OBJ= $(notdir $(SRC:.c=.o))
@@ -32,7 +36,8 @@ LF 			= --leak-check=full \
         		--track-origins=yes \
         		--verbose \
         		--log-file=$(LEAKS_FILE) \
-        		./fdf maps/42.fdf
+        		./fdf maps/42.fdf 
+
 
 #common commands
 RM =rm -f
@@ -40,7 +45,7 @@ RM =rm -f
 #rules
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX)
+$(NAME): $(OBJ) $(LIBFT)
 	printf "\n$(CY)Generating FdF executable...$(RC)\n"
 	$(CC) $(CF) -o $(NAME) $(OBJ) -L $(MLX_PATH) -L $(LFT_PATH) -lft $(MLX_CF)
 	mkdir objs

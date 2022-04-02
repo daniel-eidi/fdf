@@ -6,13 +6,13 @@
 /*   By: daeidi-h <daeidi-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:51:13 by daeidi-h          #+#    #+#             */
-/*   Updated: 2022/03/24 20:14:05 by daeidi-h         ###   ########.fr       */
+/*   Updated: 2022/04/02 15:44:34 by daeidi-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-float	zoom_to_fit(fdf *data)
+float	zoom_to_fit(t_fdf *data)
 {
 	float	proportion_x;
 	float	proportion_y;
@@ -26,7 +26,7 @@ float	zoom_to_fit(fdf *data)
 	return (zoom / 2);
 }
 
-void	max_z(fdf *data)
+void	neg_z(t_fdf *data)
 {
 	int	i;
 	int	j;
@@ -37,11 +37,10 @@ void	max_z(fdf *data)
 		j = 0;
 		while ((j < data->width))
 		{
-			if (mod(data->z_matrix[i][j]) > data->max_z)
-				data->max_z = mod(data->z_matrix[i][j]);
+			if (data->z_matrix[i][j] < data->min_z && data->z_matrix[i][j] < 0)
+				data->min_z = data->z_matrix[i][j];
 			j++;
 		}
 		i++;
 	}	
-	printf ("maior z = %d\n", data->max_z);
 }
