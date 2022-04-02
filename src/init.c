@@ -6,7 +6,7 @@
 /*   By: daeidi-h <daeidi-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 18:59:36 by coder             #+#    #+#             */
-/*   Updated: 2022/04/02 17:46:05 by daeidi-h         ###   ########.fr       */
+/*   Updated: 2022/04/02 19:34:58 by daeidi-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_fdf	*data_init(char *file_name)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
 	WINDOW_WIDTH, WINDOW_HEIGHT, "FDF");
 	data->x = 0;
-	data->zscale = 1;
+	data->zscale = 0.5;
 	data->x1 = 0;
 	data->y = 0;
 	data->y1 = 0;

@@ -6,7 +6,7 @@
 /*   By: daeidi-h <daeidi-h@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 21:47:14 by daeidi-h          #+#    #+#             */
-/*   Updated: 2022/04/02 18:06:13 by daeidi-h         ###   ########.fr       */
+/*   Updated: 2022/04/02 22:19:21 by daeidi-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	isomatric(float *x, float *y, int z)
 	float	new_x;
 	float	new_y;
 
-	new_x = (*x - *y) * cos(0.52359877);
-	new_y = (*x + *y) * sin(0.52359877) - z;
+	new_x = (*x - *y) * cos(30 * 0.0174533);
+	new_y = (*x + *y) * sin(30 * 0.0174533) - z;
 	*x = new_x;
 	*y = new_y;
 }
@@ -81,11 +81,13 @@ void	bresenham(t_fdf *data)
 	delta_y = (data->y1 - data->y) / max_steps;
 	shift(data);
 	i = 0;
-	while (i <= max_steps)
+	while (i < max_steps)
 	{	
-		if (data->x <= WINDOW_WIDTH && data->y <= WINDOW_HEIGHT \
-		&& data->x >= 0 && data->y >= 0)
+		if (data->x < WINDOW_WIDTH && data->y < WINDOW_HEIGHT \
+		&& data->x > 0 && data->y > 0)
+		{
 			pixel_to_image(data->image, data->x, data->y, data->color);
+		}
 		data->x += delta_x;
 		data->y += delta_y;
 		i++;
