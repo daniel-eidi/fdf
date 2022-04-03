@@ -6,7 +6,7 @@
 #    By: daeidi-h <daeidi-h@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 18:33:46 by pbie              #+#    #+#              #
-#    Updated: 2022/03/25 21:32:41 by daeidi-h         ###   ########.fr        #
+#    Updated: 2022/04/03 13:11:31 by daeidi-h         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ NAME = libft.a
 
 #TEST = test
 
-CC = clang
+CC = cc
 RM = rm -f
 CCLIB = ar rcs
 

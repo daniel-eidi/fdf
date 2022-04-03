@@ -26,7 +26,7 @@ OBJ= $(notdir $(SRC:.c=.o))
 
 #compilation
 CF 			= -Wall -Wextra -Werror
-CC 			= clang
+CC 			= cc
 MLX_CF 		= -lm -lbsd -lmlx -lXext -lX11
 CFI 		= -I$(INCLUDES)
 LEAKS 		= valgrind
@@ -46,21 +46,19 @@ RM =rm -f
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	printf "\n$(CY)Generating FdF executable...$(RC)\n"
-	$(CC) $(CF) -o $(NAME) $(OBJ) -L $(LFT_PATH) -lft $(MLX_CF)
-	mkdir objs
-	mv $(OBJ) objs/
-	printf "$(GR)Done!$(RC)\n\n"
+	@printf "\n$(CY)Generating FdF executable...$(RC)\n"
+	@$(CC) $(CF) -o $(NAME) $(OBJ) -L $(LFT_PATH) -lft $(MLX_CF)
+	@printf "$(GR)Done!$(RC)\n\n"
 
 $(OBJ): $(SRC)
-	printf "\n$(CY)Compiling source files...$(RC)\n"
-	$(CC) $(CF) -g -c -I ./includes/ $(SRC)
-	printf "$(GR)Objects ready!$(RC)\n\n"
+	@printf "\n$(CY)Compiling source files...$(RC)\n"
+	@$(CC) $(CF) -g -c -I ./includes/ $(SRC)
+	@printf "$(GR)Objects ready!$(RC)\n\n"
 
 $(LIBFT):
-	printf "\n$(GR)Generating Libft...$(RC)\n"
-	make -C $(LFT_PATH)
-	printf "$(GR)Libft created!$(RC)\n\n"
+	@printf "\n$(GR)Generating Libft...$(RC)\n"
+	@make -C $(LFT_PATH)
+	@printf "$(GR)Libft created!$(RC)\n\n"
 
 bonus: all
 
